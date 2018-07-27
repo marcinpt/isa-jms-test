@@ -1,12 +1,10 @@
 package com.infoshareacademy.jms;
 
-import com.infoshareacademy.data.MessageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import javax.inject.Inject;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
@@ -24,9 +22,6 @@ import javax.jms.TextMessage;
 public class LoggerSubscriberBean implements MessageListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoggerSubscriberBean.class);
-
-    @Inject
-    private MessageRepository messageRepository;
 
     @Override
     public void onMessage(Message message) {
