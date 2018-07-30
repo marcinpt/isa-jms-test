@@ -35,7 +35,7 @@ public class Consumer implements Runnable, ExceptionListener {
             System.out.println("Started ... ");
 
             while (true) {
-                Message msg = null; // odbierz wiadomość z kolejki
+                Message msg = consumer.receive(); // odbierz wiadomość z kolejki
 
                 if (msg instanceof TextMessage) {
                     String text = ((TextMessage) msg).getText();

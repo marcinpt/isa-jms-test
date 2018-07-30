@@ -18,11 +18,12 @@ public class Producer {
         ConnectionFactory connectionFactory =
             new ActiveMQConnectionFactory("tcp://localhost:61616");
 
-        Connection connection = null; // utwórz połączenie z connectionFactory i rozpocznij metodą start()
+        Connection connection = connectionFactory.createConnection(); // utwórz połączenie z connectionFactory i rozpocznij metodą start()
+        connection.start();
 
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        Destination destination = null; // pobierz z sesji destination ISA.JJDD4.MSG.QUEUE
+        Destination destination = session.createQueue("ISA.JJDD4.MSG.QUEUE"); // pobierz z sesji destination ISA.JJDD4.MSG.QUEUE
 
         MessageProducer producer = session.createProducer(destination);
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
@@ -32,7 +33,8 @@ public class Producer {
         while (true) {
             String text = scanner.nextLine();
 
-            // stwórz i wyślij wiadomość z wczytanym tekstem
+            Message mymsg = session.createTextMessage(text);
+            producer.send(mymsg);
 
             if (text.equals("exit")) {
                 break;
