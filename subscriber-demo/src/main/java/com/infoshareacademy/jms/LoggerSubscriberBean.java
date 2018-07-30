@@ -26,7 +26,9 @@ public class LoggerSubscriberBean implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            LOG.info("Received message: {}", message);
+            if (message instanceof TextMessage) {
+                LOG.info("Received message: {}", ((TextMessage) message).getText());
+            }
         } catch (Exception e) {
             LOG.error("Error while receiving message", e);
         }
