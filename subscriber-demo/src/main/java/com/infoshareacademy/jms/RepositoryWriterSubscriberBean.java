@@ -31,7 +31,7 @@ public class RepositoryWriterSubscriberBean implements MessageListener {
     public void onMessage(Message message) {
         try {
             if (message instanceof TextMessage) {
-                String text = null; // odczytaj treść wiadomości
+                String text = ((TextMessage) message).getText(); // odczytaj treść wiadomości
                 messageRepository.addMessage(text);
             }
         } catch (Exception e) {

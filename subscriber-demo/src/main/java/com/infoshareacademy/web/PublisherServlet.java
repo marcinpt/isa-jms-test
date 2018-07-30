@@ -20,7 +20,7 @@ public class PublisherServlet extends HttpServlet {
     private JMSContext jmsContext;
 
 //    odkomentuj poniższą linię i uzupełnij topic
-//    @Resource(lookup = "java:/jms/topic/...")
+    @Resource(lookup = "java:/jms/topic/ISA.TOPIC")
     private Topic topic;
 
     @Override
